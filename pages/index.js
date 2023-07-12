@@ -17,6 +17,11 @@ import Verify from "../components/Verify";
 import Account from "../components/Account";
 import { useAccount } from "wagmi";
 import { useEffect, useState } from "react";
+import { encodeFunctionData } from "viem";
+import { abi } from "../abi";
+import { toast } from "react-hot-toast";
+
+const NFT_CONTRACT_ADDRESS = "0xB2ae3D6EAD4047aD6Db1b2FfaD07608A359df867";
 
 export default function Home() {
     const [hasMounted, setHasMounted] = useState(false);
@@ -24,6 +29,7 @@ export default function Home() {
     const { isConnected } = useAccount();
     const [smartAccountAddress, setSmartAccountAddress] =
         useState("Loading...");
+    const [provider, setProvider] = useState(undefined);
     useEffect(() => {
         // This will only be called once the component is mounted inside the browser
         setHasMounted(true);
@@ -31,6 +37,26 @@ export default function Home() {
 
     if (!hasMounted) {
         return null;
+    }
+
+    async function mintNFT() {
+        if (provider) {
+            toast.promise(
+                provider.sendUserOperation({
+                    target: NFT_CONTRACT_ADDRESS,
+                    data: encodeFunctionData({
+                        abi,
+                        functionName: "mint",
+                        args: [smartAccountAddress],
+                    }),
+                }),
+                {
+                    loading: () => "Please wait!",
+                    success: () => "NFT Minted!",
+                    error: (err) => err,
+                }
+            );
+        }
     }
 
     return (
@@ -79,6 +105,7 @@ export default function Home() {
                         <Account
                             smartAccountAddress={smartAccountAddress}
                             setSmartAccountAddress={setSmartAccountAddress}
+                            setProvider={setProvider}
                         />
                     )}
                 </Container>
@@ -143,7 +170,11 @@ export default function Home() {
                     <Title>Step 4: Try!</Title>
                     <Text>Try your free UserOperations</Text>
                     <Text>Mint an NFT for free (no gas)</Text>
-                    <Button borderRadius={"20"} colorScheme="twitter">
+                    <Button
+                        onClick={mintNFT}
+                        borderRadius={"20"}
+                        colorScheme="twitter"
+                    >
                         Mint NFT
                     </Button>
                 </Container>
