@@ -8,6 +8,8 @@ A paymaster that sponsors 5 transactions if you tweet about it, built using Alch
 -   [Usage](#usage)
 -   [Features](#features)
 -   [Contributing](#contributing)
+-   [Contact](#contact)
+-   [Troubleshooting](#troubleshooting)
 
 ## Installation
 
