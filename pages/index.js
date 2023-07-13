@@ -179,18 +179,53 @@ export default function Home() {
                     </Button>
                 </Container>
             </HStack>
-            <Text>
-                Made by{" "}
-                <Link href="https://twitter.com/harpaljadeja11" target="_blank">
-                    <Text
-                        fontWeight={"bold"}
-                        textDecoration={"underline"}
-                        display={"inline"}
+            <VStack gap={"2"}>
+                <Text>
+                    Made by{" "}
+                    <Link
+                        href="https://twitter.com/harpaljadeja11"
+                        target="_blank"
                     >
-                        harpaljadeja11
-                    </Text>
-                </Link>
-            </Text>
+                        <Text
+                            fontWeight={"bold"}
+                            textDecoration={"underline"}
+                            display={"inline"}
+                        >
+                            harpaljadeja11
+                        </Text>
+                    </Link>
+                </Text>
+                <Text>
+                    Built using{" "}
+                    <Link
+                        href="https://www.alchemy.com/account-abstraction"
+                        target="_blank"
+                    >
+                        <Text
+                            fontWeight={"bold"}
+                            textDecoration={"underline"}
+                            display={"inline"}
+                        >
+                            Alchemy
+                        </Text>
+                    </Link>
+                </Text>
+                <Text>
+                    Check the{" "}
+                    <Link
+                        href="https://github.com/therealharpaljadeja/tweet-paymaster"
+                        target="_blank"
+                    >
+                        <Text
+                            fontWeight={"bold"}
+                            textDecoration={"underline"}
+                            display={"inline"}
+                        >
+                            Code
+                        </Text>
+                    </Link>
+                </Text>
+            </VStack>
         </VStack>
     );
 }
