@@ -1,17 +1,17 @@
 import axios from "axios";
 
 export default async function handler(req, res) {
-    const { method, query, body } = req;
-    console.log(method);
+    const { method, body } = req;
     if (method == "POST") {
         let { data: response } = await axios.get(
-            `https://manage.g.alchemy.com/api/gasManager/policy/${process.env.GAS_POLICY_ID}`,
+            `https://manage.g.alchemy.com/api/gasManager/policy/${process.env.NEXT_PUBLIC_GAS_POLICY_ID}`,
             {
                 headers: {
                     Authorization: `Bearer ${process.env.ALCHEMY_BEARER_TOKEN}`,
                 },
             }
         );
+
         let { rules } = response.data.policy;
 
         let newSenderAllowlist = rules.senderAllowlist
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
         try {
             let response = await axios({
                 method: "put",
-                url: `https://manage.g.alchemy.com/api/gasManager/policy/${process.env.GAS_POLICY_ID}`,
+                url: `https://manage.g.alchemy.com/api/gasManager/policy/${process.env.NEXT_PUBLIC_GAS_POLICY_ID}`,
                 data: {
                     rules: newRules,
                 },

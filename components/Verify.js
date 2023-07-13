@@ -1,7 +1,6 @@
 import { Button } from "@chakra-ui/react";
 import { useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
-import axios from "axios";
 
 export default function Verify(props) {
     const { data: session } = useSession();
