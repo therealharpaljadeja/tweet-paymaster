@@ -67,7 +67,6 @@ export default function Account(props) {
                     entryPoint: ENTRYPOINT_ADDRESS,
                 });
 
-                console.log(provider.account);
                 let address = await provider.getAddress();
                 let deploymentStatus =
                     await provider.account.getDeploymentState();

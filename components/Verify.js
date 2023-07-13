@@ -10,9 +10,11 @@ export default function Verify(props) {
     function verify() {
         if (session) {
             let { tweets } = session;
-            console.log(tweets);
             if (smartAccountAddress != "Loading...") {
-                if (tweets.text == "Testing in Prod") {
+                if (
+                    tweets.text ==
+                    "Got free UserOperations\n\n@harpaljadeja11 is the best!"
+                ) {
                     // Add address to allowlist
                     toast.promise(
                         fetch("/api/replace", {
