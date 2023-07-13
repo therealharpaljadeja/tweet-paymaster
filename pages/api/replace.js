@@ -22,8 +22,6 @@ export default async function handler(req, res) {
             senderAllowlist: newSenderAllowlist,
         };
 
-        console.log(newRules);
-
         try {
             let response = await axios({
                 method: "put",
