@@ -2,6 +2,7 @@ import axios from "axios";
 
 export default async function handler(req, res) {
     const { method, query, body } = req;
+    console.log(method);
     if (method == "POST") {
         let { data: response } = await axios.get(
             `https://manage.g.alchemy.com/api/gasManager/policy/${process.env.GAS_POLICY_ID}`,
